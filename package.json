@@ -11,5 +11,8 @@
     "pololu"
   ],
   "author": "Sille Van Landschoot",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  }
 }
