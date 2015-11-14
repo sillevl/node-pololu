@@ -2,6 +2,10 @@
   "name": "node-pololu",
   "version": "0.0.1",
   "description": "Control Pololu robots from Node.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sillevl/node-pololu.git"
+  }
   "main": "pololu.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
