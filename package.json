@@ -5,7 +5,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/sillevl/node-pololu.git"
-  }
+  },
   "main": "pololu.js",
   "scripts": {
     "test": "mocha"
