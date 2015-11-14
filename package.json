@@ -1,0 +1,15 @@
+{
+  "name": "node-pololu",
+  "version": "0.0.1",
+  "description": "Control Pololu robots from Node.js",
+  "main": "pololu.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "pololu"
+  ],
+  "author": "Sille Van Landschoot",
+  "license": "ISC"
+}
