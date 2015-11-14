@@ -1,35 +1,66 @@
 
 var net = require('net');
 
-var Pololu = function(id, host, port){
+var Pololu = function(id, port, host){
   this.id = id;
-  this.host = host;
-  this.port = port;
-  var client = new net.Socket();
-  client.connect(1337, '127.0.0.1', function() {
-  	console.log('Connected');
-  	client.write('Hello, server! Love, Client.');
-  });
+
+  if (port == undefined) {
+    port = 22446
+  }
+
+  if (host == undefined) {
+    host = '127.0.0.1'
+  }
+
+  var client = new net.Socket;
+  client.connect(port, host);
 
   // setters
   this.drive = function(speed){
+    set({speed: speed})
+  }
 
-  };
   this.turn = function(turnspeed){
+    set({turnspeed: turnspeed})
+  }
 
-  };
   this.stop = function(){
+    set({stop: true})
+  }
 
-  };
   this.calibrate = function(){
+    set({calibrate: true})
+  }
 
-  };
   this.led = function(index, state){
-
-  };
+    set({led: index, state: state})
+  }
 
   // getters
-  this.line_sensor = function(callback){
-    return 0;
+  this.get_line_sensor = function(callback){
+    get('linesensor')
+    client.once('data', function(data){
+      var line_sensor_value = JSON.parse(data).linesensor
+      if (typeof callback !== 'undefined') {
+        callback(line_sensor_value)
+      }
+    })
+  }
+
+  var set = function(data){
+    data.id = id
+    client.write(JSON.stringify(data));
+  }
+
+  var get = function(type){
+    client.write(JSON.stringify({id: id, get: type}));
+  }
+
+  this.close = function(){
+    client.close()
   }
 }
+
+exports.create = function(id, host, port) {
+  return new Pololu(id, host, port);
+};
